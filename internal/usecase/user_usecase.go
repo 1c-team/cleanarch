@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/tuannm99/social-network/backend/auth/domain"
+	"github.com/tuannm-sns/auth-svc/domain"
 )
 
 type userUsecase struct {

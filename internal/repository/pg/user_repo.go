@@ -3,8 +3,8 @@ package pg
 import (
 	"context"
 
-	"github.com/tuannm99/social-network/backend/auth/domain"
-	"github.com/tuannm99/social-network/backend/auth/internal/model"
+	"github.com/tuannm-sns/auth-svc/domain"
+	"github.com/tuannm-sns/auth-svc/internal/model"
 	"gorm.io/gorm"
 )
 

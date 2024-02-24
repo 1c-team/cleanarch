@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/tuannm99/social-network/backend/auth/domain"
+	"github.com/tuannm-sns/auth-svc/domain"
 )
 
 // ArticleHandler  represent the httphandler for article

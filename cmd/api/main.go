@@ -9,11 +9,12 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/gommon/log"
-	"github.com/tuannm99/social-network/backend/auth/api"
-	"github.com/tuannm99/social-network/backend/auth/connection"
-	"github.com/tuannm99/social-network/backend/auth/internal/model"
-	"github.com/tuannm99/social-network/backend/auth/internal/repository/pg"
-	"github.com/tuannm99/social-network/backend/auth/internal/usecase"
+
+	"github.com/tuannm-sns/auth-svc/api"
+	"github.com/tuannm-sns/auth-svc/connection"
+	"github.com/tuannm-sns/auth-svc/internal/model"
+	"github.com/tuannm-sns/auth-svc/internal/repository/pg"
+	"github.com/tuannm-sns/auth-svc/internal/usecase"
 )
 
 func main() {
