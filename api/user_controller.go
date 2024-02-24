@@ -8,7 +8,6 @@ import (
 	"github.com/tuannm-sns/auth-svc/domain"
 )
 
-// ArticleHandler  represent the httphandler for article
 type UserController struct {
 	userUsecase domain.UserUsecase
 }
