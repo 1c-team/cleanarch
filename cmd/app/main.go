@@ -13,7 +13,7 @@ import (
 	"github.com/labstack/gommon/log"
 
 	"github.com/tuannm-sns/auth-svc/connection"
-	"github.com/tuannm-sns/auth-svc/internal/app"
+	"github.com/tuannm-sns/auth-svc/internal/app/controller"
 	"github.com/tuannm-sns/auth-svc/repository/models"
 )
 
@@ -44,7 +44,7 @@ func main() {
 
 	// register router + handler using DIContainer (wire)
 	userController := InitializeUserController(conn)
-	app.RegisterUserController(e, userController)
+	controller.RegisterUserController(e, userController)
 
 	// gracefully shutdown
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)

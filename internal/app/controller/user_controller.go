@@ -1,4 +1,4 @@
-package app
+package controller
 
 import (
 	"net/http"
@@ -9,10 +9,10 @@ import (
 )
 
 type UserController struct {
-	userUsecase domain.UserUsecase
+	userUsecase domain.IUserUsecase
 }
 
-func NewUserController(userUsecase domain.UserUsecase) UserController {
+func NewUserController(userUsecase domain.IUserUsecase) UserController {
 	return UserController{userUsecase}
 }
 

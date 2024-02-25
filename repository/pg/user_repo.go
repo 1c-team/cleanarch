@@ -12,7 +12,12 @@ type PgUserRepository struct {
 	connection *gorm.DB
 }
 
-func NewPgUserRepository(conn *gorm.DB) domain.UserRepository {
+// Insert implements domain.UserRepository.
+func (*PgUserRepository) Insert(user *domain.User) error {
+	panic("unimplemented")
+}
+
+func NewPgUserRepository(conn *gorm.DB) domain.IUserRepository {
 	return &PgUserRepository{conn}
 }
 
