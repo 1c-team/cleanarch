@@ -12,9 +12,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
 
-	"github.com/tuannm-sns/auth-svc/connection"
-	"github.com/tuannm-sns/auth-svc/internal/app/controller"
-	"github.com/tuannm-sns/auth-svc/repository/models"
+	"github.com/motchai-sns/auth-svc/connection"
+	"github.com/motchai-sns/auth-svc/repository/models"
 )
 
 func main() {
@@ -44,7 +43,7 @@ func main() {
 
 	// register router + handler using DIContainer (wire)
 	userController := InitializeUserController(conn)
-	controller.RegisterUserController(e, userController)
+	userController.RegisterHandler(e)
 
 	// gracefully shutdown
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)

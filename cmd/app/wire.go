@@ -7,9 +7,9 @@ import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
 
-	"github.com/tuannm-sns/auth-svc/internal/app/controller"
-	"github.com/tuannm-sns/auth-svc/internal/usecase"
-	"github.com/tuannm-sns/auth-svc/repository/pg"
+	"github.com/motchai-sns/auth-svc/internal/app/controller"
+	"github.com/motchai-sns/auth-svc/internal/usecase"
+	"github.com/motchai-sns/auth-svc/repository/pg"
 )
 
 // db connection will be injected by hand

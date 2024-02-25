@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/tuannm-sns/auth-svc/internal/domain"
+	"github.com/motchai-sns/auth-svc/internal/domain"
 )
 
 type UserController struct {
@@ -16,23 +16,23 @@ func NewUserController(userUsecase domain.IUserUsecase) UserController {
 	return UserController{userUsecase}
 }
 
-func RegisterUserController(e *echo.Echo, userController UserController) {
-	e.GET("/users/:id", userController.GetUser)
+func (uc *UserController) RegisterHandler(e *echo.Echo) {
+	e.GET("/users/:id", uc.GetUser)
 }
 
-func (userController *UserController) GetUser(c echo.Context) error {
+func (uc *UserController) GetUser(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		return c.JSON(http.StatusNotFound, domain.ErrNotFound.Error())
 	}
 
 	ctx := c.Request().Context()
-	usr, err := userController.userUsecase.GetByID(ctx, int64(id))
+	user, err := uc.userUsecase.GetByID(ctx, uint(id))
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}
 
-	return c.JSON(http.StatusOK, usr)
+	return c.JSON(http.StatusOK, user)
 }
 
 // ResponseError represent the response error struct

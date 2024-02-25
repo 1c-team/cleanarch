@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/tuannm-sns/auth-svc/internal/domain"
+	"github.com/motchai-sns/auth-svc/internal/domain"
 )
 
 type UserUsecase struct {
@@ -27,7 +27,7 @@ func (uuc *UserUsecase) Fetch(ctx context.Context, cursor string, num int64) (re
 }
 
 // GetByID implements domain.UserRepository.
-func (uuc *UserUsecase) GetByID(ctx context.Context, id int64) (domain.User, error) {
+func (uuc *UserUsecase) GetByID(ctx context.Context, id uint) (domain.User, error) {
 	return uuc.userRepo.GetByID(ctx, id)
 }
 

@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	ID        int64     `json:"id"`
+	ID        uint      `json:"id"`
 	Username  string    `json:"username"`
 	Password  string    `json:"password"`
 	Email     string    `json:"email"`
@@ -29,18 +29,13 @@ func (u *User) SetStatus(s string) {
 }
 
 type IUserUsecase interface {
-	Fetch(ctx context.Context, cursor string, num int64) ([]User, string, error)
-	GetByID(ctx context.Context, id int64) (User, error)
-	Update(ctx context.Context, user *User) error
-	GetByTitle(ctx context.Context, title string) (User, error)
-	Store(context.Context, *User) error
-	Delete(ctx context.Context, id int64) error
+	GetByID(ctx context.Context, id uint) (User, error)
 }
 
 type IUserRepository interface {
 	Insert(user *User) error
 	Fetch(ctx context.Context, cursor string, num int64) (res []User, nextCursor string, err error)
-	GetByID(ctx context.Context, id int64) (User, error)
+	GetByID(ctx context.Context, id uint) (User, error)
 	GetByTitle(ctx context.Context, title string) (User, error)
 	Update(ctx context.Context, user *User) error
 	Store(ctx context.Context, user *User) error

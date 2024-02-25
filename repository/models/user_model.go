@@ -1,18 +1,35 @@
 package model
 
 import (
-	"time"
-
+	"github.com/motchai-sns/auth-svc/internal/domain"
 	"gorm.io/gorm"
 )
 
 type User struct {
 	gorm.Model
-	ID        int64
-	Username  string
-	Password  string
-	Email     string
-	Status    string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Username string
+	Password string
+	Email    string
+	Status   string
+}
+
+func NewUserModelFromEntity(user *domain.User) *User {
+	return &User{
+		Username: user.Username,
+		Password: user.Password,
+		Email:    user.Email,
+		Status:   user.Status,
+	}
+}
+
+func (userModel *User) ToEntity() *domain.User {
+	return &domain.User{
+		ID:        userModel.ID,
+		Username:  userModel.Username,
+		Password:  userModel.Password,
+		Email:     userModel.Email,
+		Status:    userModel.Status,
+		CreatedAt: userModel.CreatedAt,
+		UpdatedAt: userModel.UpdatedAt,
+	}
 }
