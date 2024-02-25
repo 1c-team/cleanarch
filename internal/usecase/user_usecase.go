@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/tuannm-sns/auth-svc/domain"
+	"github.com/tuannm-sns/auth-svc/internal/domain"
 )
 
 type UserUsecase struct {

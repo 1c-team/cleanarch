@@ -3,8 +3,8 @@ package pg
 import (
 	"context"
 
-	"github.com/tuannm-sns/auth-svc/domain"
-	"github.com/tuannm-sns/auth-svc/internal/model"
+	"github.com/tuannm-sns/auth-svc/internal/domain"
+	"github.com/tuannm-sns/auth-svc/repository/models"
 	"gorm.io/gorm"
 )
 

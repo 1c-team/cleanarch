@@ -7,12 +7,14 @@ import (
 	"os/signal"
 	"time"
 
+	// "github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
 
-	"github.com/tuannm-sns/auth-svc/api"
 	"github.com/tuannm-sns/auth-svc/connection"
-	"github.com/tuannm-sns/auth-svc/internal/model"
+	"github.com/tuannm-sns/auth-svc/internal/api"
+	"github.com/tuannm-sns/auth-svc/repository/models"
 )
 
 func main() {
@@ -22,9 +24,22 @@ func main() {
 
 	// Frameworks
 	e := echo.New()
+
 	e.Logger.SetLevel(log.INFO)
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+
+	// global middleware
+	e.Use(middleware.Logger())
+	e.Use(middleware.RequestID())
+	e.Use(middleware.CSRF())
+	e.Use(middleware.CORS())
+	e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
+		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {
+			log.Printf(c.Path())
+		},
+		Timeout: 60 * time.Second,
+	}))
+	e.GET("/ping", func(c echo.Context) error {
+		return c.String(http.StatusOK, c.Response().Header().Get(echo.HeaderXRequestID))
 	})
 
 	// register router + handler using DIContainer (wire)

@@ -7,9 +7,9 @@
 package main
 
 import (
-	"github.com/tuannm-sns/auth-svc/api"
-	"github.com/tuannm-sns/auth-svc/internal/repository/pg"
+	"github.com/tuannm-sns/auth-svc/internal/api"
 	"github.com/tuannm-sns/auth-svc/internal/usecase"
+	"github.com/tuannm-sns/auth-svc/repository/pg"
 	"gorm.io/gorm"
 )
 
