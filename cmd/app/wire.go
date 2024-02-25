@@ -7,17 +7,17 @@ import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
 
-	"github.com/tuannm-sns/auth-svc/internal/api"
+	"github.com/tuannm-sns/auth-svc/internal/app"
 	"github.com/tuannm-sns/auth-svc/internal/usecase"
 	"github.com/tuannm-sns/auth-svc/repository/pg"
 )
 
 // db connection will be injected by hand
-func InitializeUserController(conn *gorm.DB) api.UserController {
+func InitializeUserController(conn *gorm.DB) app.UserController {
 	wire.Build(
 		pg.NewPgUserRepository,
 		usecase.NewUserUsecase,
-		api.NewUserController,
+		app.NewUserController,
 	)
-	return api.UserController{}
+	return app.UserController{}
 }
