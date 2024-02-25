@@ -8,40 +8,44 @@ import (
 	"gorm.io/gorm"
 )
 
-type pgUserRepository struct {
+type PgUserRepository struct {
 	connection *gorm.DB
 }
 
+func NewPgUserRepository(conn *gorm.DB) domain.UserRepository {
+	return &PgUserRepository{conn}
+}
+
 // Delete implements domain.UserRepository.
-func (pg *pgUserRepository) Delete(ctx context.Context, id int64) error {
+func (pg *PgUserRepository) Delete(ctx context.Context, id int64) error {
 	panic("unimplemented")
 }
 
 // Fetch implements domain.UserRepository.
-func (pg *pgUserRepository) Fetch(ctx context.Context, cursor string, num int64) (res []domain.User, nextCursor string, err error) {
+func (pg *PgUserRepository) Fetch(ctx context.Context, cursor string, num int64) (res []domain.User, nextCursor string, err error) {
 	// var usr model.User
 	// pg.db.Get(&usr)
 	panic("unimplemented")
 }
 
 // GetByTitle implements domain.UserRepository.
-func (pg *pgUserRepository) GetByTitle(ctx context.Context, title string) (domain.User, error) {
+func (pg *PgUserRepository) GetByTitle(ctx context.Context, title string) (domain.User, error) {
 	panic("unimplemented")
 }
 
 // Store implements domain.UserRepository.
-func (pg *pgUserRepository) Store(ctx context.Context, a *domain.User) error {
+func (pg *PgUserRepository) Store(ctx context.Context, a *domain.User) error {
 	panic("unimplemented")
 }
 
 // Update implements domain.UserRepository.
-func (pg *pgUserRepository) Update(ctx context.Context, ar *domain.User) error {
+func (pg *PgUserRepository) Update(ctx context.Context, ar *domain.User) error {
 	// pg.db.Create(&model.User{Username: "usr1", Password: "pass1"})
 	panic("unimplemented")
 }
 
 // GetByID implements domain.UserRepository.
-func (pg *pgUserRepository) GetByID(ctx context.Context, id int64) (domain.User, error) {
+func (pg *PgUserRepository) GetByID(ctx context.Context, id int64) (domain.User, error) {
 	var usr model.User
 	result := pg.connection.First(&usr, id)
 
@@ -51,8 +55,4 @@ func (pg *pgUserRepository) GetByID(ctx context.Context, id int64) (domain.User,
 		},
 		result.Error
 
-}
-
-func NewPgArticleRepository(conn *gorm.DB) domain.UserRepository {
-	return &pgUserRepository{conn}
 }

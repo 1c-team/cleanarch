@@ -12,11 +12,12 @@ type UserController struct {
 	userUsecase domain.UserUsecase
 }
 
-func RegisterUserController(e *echo.Echo, userUsecase domain.UserUsecase) {
-	controller := &UserController{
-		userUsecase: userUsecase,
-	}
-	e.GET("/users/:id", controller.GetUser)
+func NewUserController(userUsecase domain.UserUsecase) UserController {
+	return UserController{userUsecase}
+}
+
+func RegisterUserController(e *echo.Echo, userController UserController) {
+	e.GET("/users/:id", userController.GetUser)
 }
 
 func (userController *UserController) GetUser(c echo.Context) error {

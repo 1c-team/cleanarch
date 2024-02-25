@@ -13,18 +13,12 @@ import (
 	"github.com/tuannm-sns/auth-svc/api"
 	"github.com/tuannm-sns/auth-svc/connection"
 	"github.com/tuannm-sns/auth-svc/internal/model"
-	"github.com/tuannm-sns/auth-svc/internal/repository/pg"
-	"github.com/tuannm-sns/auth-svc/internal/usecase"
 )
 
 func main() {
-	conn := connection.CreatePostgresConnection()
+	conn := connection.NewPostgresConnection()
 	// Migrate the schema
 	conn.AutoMigrate(&model.User{})
-
-	// DI
-	userRepo := pg.NewPgArticleRepository(conn)
-	userUsecase := usecase.NewUserUsecase(userRepo, 10*time.Second)
 
 	// Frameworks
 	e := echo.New()
@@ -33,8 +27,9 @@ func main() {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
-	// register router + handler
-	api.RegisterUserController(e, userUsecase)
+	// register router + handler using DIContainer (wire)
+	userController := InitializeUserController(conn)
+	api.RegisterUserController(e, userController)
 
 	// gracefully shutdown
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
