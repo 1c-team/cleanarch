@@ -17,6 +17,7 @@ import (
 )
 
 func main() {
+
 	conn := connection.NewPostgresConnection()
 	// Migrate the schema
 	conn.AutoMigrate(&model.User{})
