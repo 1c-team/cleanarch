@@ -27,7 +27,7 @@ func (uc *UserController) GetUser(c echo.Context) error {
 	}
 
 	ctx := c.Request().Context()
-	user, err := uc.userUsecase.GetByID(ctx, uint(id))
+	user, err := uc.userUsecase.GetUserByID(ctx, uint(id))
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}

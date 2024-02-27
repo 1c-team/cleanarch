@@ -29,7 +29,7 @@ func (u *User) SetStatus(s string) {
 }
 
 type IUserUsecase interface {
-	GetByID(ctx context.Context, id uint) (User, error)
+	GetUserByID(ctx context.Context, id uint) (User, error)
 }
 
 type IUserRepository interface {
