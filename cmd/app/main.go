@@ -12,8 +12,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
 
-	"github.com/motchai-sns/auth-svc/connection"
-	"github.com/motchai-sns/auth-svc/repository/models"
+	"github.com/motchai-sns/sn-mono/connection"
+	"github.com/motchai-sns/sn-mono/repository/models"
 )
 
 func main() {

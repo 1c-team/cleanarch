@@ -7,9 +7,9 @@
 package main
 
 import (
-	"github.com/motchai-sns/auth-svc/internal/app/controller"
-	"github.com/motchai-sns/auth-svc/internal/usecase"
-	"github.com/motchai-sns/auth-svc/repository/pg"
+	"github.com/motchai-sns/sn-mono/internal/app/controller"
+	"github.com/motchai-sns/sn-mono/internal/usecase"
+	"github.com/motchai-sns/sn-mono/repository/pg"
 	"gorm.io/gorm"
 )
 

@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/motchai-sns/auth-svc/internal/domain"
+	"github.com/motchai-sns/sn-mono/internal/domain"
 )
 
 type UserUsecase struct {

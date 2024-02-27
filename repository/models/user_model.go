@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/motchai-sns/auth-svc/internal/domain"
+	"github.com/motchai-sns/sn-mono/internal/domain"
 	"gorm.io/gorm"
 )
 

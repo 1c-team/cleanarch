@@ -1,4 +1,4 @@
-module github.com/motchai-sns/auth-svc
+module github.com/motchai-sns/sn-mono
 
 go 1.21.6
 

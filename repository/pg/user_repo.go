@@ -3,8 +3,8 @@ package pg
 import (
 	"context"
 
-	"github.com/motchai-sns/auth-svc/internal/domain"
-	"github.com/motchai-sns/auth-svc/repository/models"
+	"github.com/motchai-sns/sn-mono/internal/domain"
+	"github.com/motchai-sns/sn-mono/repository/models"
 	"gorm.io/gorm"
 )
 
