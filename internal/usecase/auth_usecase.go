@@ -4,22 +4,33 @@ import (
 	"github.com/motchai-sns/sn-mono/internal/domain"
 )
 
-type AuthUsecase struct {
-	userRepo domain.IUserRepository
+type AuthUsecase struct{}
+
+func NewAuthUsecase() domain.IAuthUsecase {
+	return &AuthUsecase{}
 }
 
-// Login implements domain.IAuthUsecase.
-func (*AuthUsecase) Login(strategy domain.LoginStrategy) error {
+// GithubLogin implements domain.IAuthUsecase.
+func (authUC *AuthUsecase) GithubLogin() error {
 	panic("unimplemented")
 }
 
-// register implements domain.IAuthUsecase.
-func (*AuthUsecase) Register(id uint) error {
+// GoogleLogin implements domain.IAuthUsecase.
+func (authUC *AuthUsecase) GoogleLogin() error {
 	panic("unimplemented")
 }
 
-func NewAuthUsecase(ur domain.IUserRepository) domain.IAuthUsecase {
-	return &AuthUsecase{
-		userRepo: ur,
-	}
+// Register implements domain.IAuthUsecase.
+func (authUC *AuthUsecase) Register(id uint) error {
+	panic("unimplemented")
+}
+
+// GithubCallback implements domain.IAuthUsecase.
+func (authUC *AuthUsecase) GithubCallback(user domain.GithubUser) error {
+	panic("unimplemented")
+}
+
+// GoogleCallback implements domain.IAuthUsecase.
+func (authUC *AuthUsecase) GoogleCallback(user domain.GoogleUser) error {
+	panic("unimplemented")
 }

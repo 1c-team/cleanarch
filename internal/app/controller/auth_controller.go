@@ -3,6 +3,7 @@ package controller
 import (
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/motchai-sns/sn-mono/configs"
@@ -10,28 +11,27 @@ import (
 )
 
 type AuthController struct {
-	authUsecase domain.IAuthUsecase
+	au domain.IAuthUsecase
 }
 
-func NewAuthController(authUsecase domain.IAuthUsecase) AuthController {
-	return AuthController{authUsecase}
+func NewAuthController(au domain.IAuthUsecase) AuthController {
+	return AuthController{au}
 }
 
-func (authController *AuthController) RegisterHandler(e *echo.Echo) {
-	e.GET("/oauth/google/login", authController.login)
-	e.POST("/oauth/google/callback", authController.googleCallback)
+func (ac *AuthController) RegisterHandler(e *echo.Echo) {
+	e.GET("/oauth/google/login", ac.login)
+	e.POST("/oauth/google/callback", ac.googleCallback)
 }
 
-func (authController *AuthController) login(c echo.Context) error {
+func (ac *AuthController) login(c echo.Context) error {
 	oauthConfig := configs.GoogleOauthConfig()
-	// authController.authUsecase.Login()
-	url := oauthConfig.AuthCodeURL("randomstate")
+	url := oauthConfig.AuthCodeURL(os.Getenv("GOOGLE_CLIENT_ID"))
 	return c.JSON(200, url)
 }
 
-func (authController *AuthController) googleCallback(c echo.Context) error {
+func (ac *AuthController) googleCallback(c echo.Context) error {
 	state := c.QueryParam("state")
-	if state != "randomstate" {
+	if state != os.Getenv("GOOGLE_CLIENT_ID") {
 		return c.JSON(400, "States don't Match!!")
 	}
 

@@ -14,6 +14,7 @@ import (
 
 	"github.com/motchai-sns/sn-mono/connection"
 	"github.com/motchai-sns/sn-mono/internal/app/controller"
+	"github.com/motchai-sns/sn-mono/internal/usecase"
 	"github.com/motchai-sns/sn-mono/repository/models"
 )
 
@@ -47,8 +48,9 @@ func main() {
 	userController := InitializeUserController(conn)
 	userController.RegisterHandler(e)
 
-    authController := controller.NewAuthController()
-    authController.RegisterHandler(e)
+	authUsecase := usecase.NewAuthUsecase()
+	authController := controller.NewAuthController(authUsecase)
+	authController.RegisterHandler(e)
 
 	// gracefully shutdown
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
