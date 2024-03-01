@@ -13,6 +13,7 @@ import (
 	"github.com/labstack/gommon/log"
 
 	"github.com/motchai-sns/sn-mono/connection"
+	"github.com/motchai-sns/sn-mono/internal/app/controller"
 	"github.com/motchai-sns/sn-mono/repository/models"
 )
 
@@ -45,6 +46,9 @@ func main() {
 	// register router + handler using DIContainer (wire)
 	userController := InitializeUserController(conn)
 	userController.RegisterHandler(e)
+
+    authController := controller.NewAuthController()
+    authController.RegisterHandler(e)
 
 	// gracefully shutdown
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)

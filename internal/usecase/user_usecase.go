@@ -16,7 +16,7 @@ func NewUserUsecase(ur domain.IUserRepository) domain.IUserUsecase {
 	}
 }
 
-// GetUserByID implements domain.UserRepository.
+// GetUserByID implements domain.IUserUsecase.
 func (uuc *UserUsecase) GetUserByID(ctx context.Context, id uint) (domain.User, error) {
 	return uuc.userRepo.GetByID(ctx, id)
 }

@@ -1,34 +1,60 @@
 package controller
-//
-// import (
-// 	"github.com/motchai-sns/sn-mono/internal/domain"
-// 	"golang.org/x/oauth2"
-// 	"golang.org/x/oauth2/google"
-// )
-//
-// type AuthController struct {
-// 	userUsecase domain.IUserUsecase
-// }
-//
-// func NewAuthController(userUsecase domain.IUserUsecase) AuthController {
-// 	return AuthController{userUsecase}
-// }
-//
-// func (uc *AuthController) RegisterHandler(e *echo.Echo) {
-// 	e.GET("/oauth/google/callback", uc.oauthCallback)
-// }
-//
-// func (uc *AuthController) oauthCallback(c echo.Context) error {
-// 	id, err := strconv.Atoi(c.Param("id"))
-// 	if err != nil {
-// 		return c.JSON(http.StatusNotFound, domain.ErrNotFound.Error())
-// 	}
-//
-// 	ctx := c.Request().Context()
-// 	user, err := uc.userUsecase.GetUserByID(ctx, uint(id))
-// 	if err != nil {
-// 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
-// 	}
-//
-// 	return c.JSON(http.StatusOK, user)
-// }
+
+import (
+	"io"
+	"net/http"
+
+	"github.com/labstack/echo/v4"
+	"github.com/motchai-sns/sn-mono/configs"
+	// "github.com/motchai-sns/sn-mono/internal/domain"
+)
+
+type AuthController struct {
+	// userUsecase domain.IUserUsecase
+}
+
+func NewAuthController(
+// userUsecase domain.IUserUsecase
+) AuthController {
+	return AuthController{
+		// userUsecase
+	}
+}
+
+func (authController *AuthController) RegisterHandler(e *echo.Echo) {
+	e.GET("/oauth/google/login", authController.login)
+	e.POST("/oauth/google/callback", authController.googleCallback)
+}
+
+func (authController *AuthController) login(c echo.Context) error {
+	oauthConfig := configs.GoogleOauthConfig()
+	url := oauthConfig.AuthCodeURL("randomstate")
+	return c.JSON(200, url)
+}
+
+func (authController *AuthController) googleCallback(c echo.Context) error {
+	state := c.QueryParam("state")
+	if state != "randomstate" {
+		return c.JSON(400, "States don't Match!!")
+	}
+
+	code := c.QueryParam("code")
+	oauthConfig := configs.GoogleOauthConfig()
+
+	token, err := oauthConfig.Exchange(c.Request().Context(), code)
+	if err != nil {
+		return c.JSON(400, "Code-Token Exchange Failed")
+	}
+
+	resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + token.AccessToken)
+	if err != nil {
+		return c.JSON(400, "User Data Fetch Failed")
+	}
+
+	userData, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return c.JSON(400, "JSON Parsing Failed")
+	}
+
+	return c.JSON(200, string(userData))
+}

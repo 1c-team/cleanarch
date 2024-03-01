@@ -16,18 +16,18 @@ func NewUserController(userUsecase domain.IUserUsecase) UserController {
 	return UserController{userUsecase}
 }
 
-func (uc *UserController) RegisterHandler(e *echo.Echo) {
-	e.GET("/users/:id", uc.GetUser)
+func (userController *UserController) RegisterHandler(e *echo.Echo) {
+	e.GET("/users/:id", userController.GetUser)
 }
 
-func (uc *UserController) GetUser(c echo.Context) error {
+func (userController *UserController) GetUser(c echo.Context) error {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		return c.JSON(http.StatusNotFound, domain.ErrNotFound.Error())
 	}
 
 	ctx := c.Request().Context()
-	user, err := uc.userUsecase.GetUserByID(ctx, uint(id))
+	user, err := userController.userUsecase.GetUserByID(ctx, uint(id))
 	if err != nil {
 		return c.JSON(getStatusCode(err), ResponseError{Message: err.Error()})
 	}
