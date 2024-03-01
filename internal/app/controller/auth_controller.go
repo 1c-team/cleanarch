@@ -6,19 +6,15 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/motchai-sns/sn-mono/configs"
-	// "github.com/motchai-sns/sn-mono/internal/domain"
+	"github.com/motchai-sns/sn-mono/internal/domain"
 )
 
 type AuthController struct {
-	// userUsecase domain.IUserUsecase
+	authUsecase domain.IAuthUsecase
 }
 
-func NewAuthController(
-// userUsecase domain.IUserUsecase
-) AuthController {
-	return AuthController{
-		// userUsecase
-	}
+func NewAuthController(authUsecase domain.IAuthUsecase) AuthController {
+	return AuthController{authUsecase}
 }
 
 func (authController *AuthController) RegisterHandler(e *echo.Echo) {
@@ -28,6 +24,7 @@ func (authController *AuthController) RegisterHandler(e *echo.Echo) {
 
 func (authController *AuthController) login(c echo.Context) error {
 	oauthConfig := configs.GoogleOauthConfig()
+	// authController.authUsecase.Login()
 	url := oauthConfig.AuthCodeURL("randomstate")
 	return c.JSON(200, url)
 }
