@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type User struct {
+type UserEntity struct {
 	ID        uint      `json:"id"`
 	Username  string    `json:"username"`
 	Password  string    `json:"password"`
@@ -15,8 +15,8 @@ type User struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func NewUser(username, password, email, status string) User {
-	return User{
+func NewUser(username, password, email, status string) UserEntity {
+	return UserEntity{
 		Username: username,
 		Password: password,
 		Email:    email,
@@ -24,20 +24,20 @@ func NewUser(username, password, email, status string) User {
 	}
 }
 
-func (u *User) SetStatus(s string) {
+func (u *UserEntity) SetStatus(s string) {
 	u.Status = s
 }
 
 type IUserUsecase interface {
-	GetUserByID(ctx context.Context, id uint) (User, error)
+	GetUserByID(ctx context.Context, id uint) (UserEntity, error)
 }
 
 type IUserRepository interface {
-	Insert(user *User) error
-	Fetch(ctx context.Context, cursor string, num int64) (res []User, nextCursor string, err error)
-	GetByID(ctx context.Context, id uint) (User, error)
-	GetByTitle(ctx context.Context, title string) (User, error)
-	Update(ctx context.Context, user *User) error
-	Store(ctx context.Context, user *User) error
+	Insert(user *UserEntity) error
+	Fetch(ctx context.Context, cursor string, num int64) (res []UserEntity, nextCursor string, err error)
+	GetByID(ctx context.Context, id uint) (UserEntity, error)
+	GetByTitle(ctx context.Context, title string) (UserEntity, error)
+	Update(ctx context.Context, user *UserEntity) error
+	Store(ctx context.Context, user *UserEntity) error
 	Delete(ctx context.Context, id int64) error
 }

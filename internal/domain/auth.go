@@ -2,7 +2,7 @@ package domain
 
 // Entity
 type (
-	GoogleUser struct {
+	GoogleUserEntity struct {
 		ID            uint   `json:"id"`
 		Email         string `json:"email"`
 		VerifiedEmail string `json:"verified_email"`
@@ -13,7 +13,7 @@ type (
 		Locale        string `json:"locate"`
 	}
 
-	GithubUser struct {
+	GithubUserEntity struct {
 		ID            uint   `json:"id"`
 		Email         string `json:"email"`
 		VerifiedEmail string `json:"verified_email"`
@@ -25,12 +25,12 @@ type (
 	}
 )
 
-func NewGoogleUser(username, password, email, status string) GoogleUser {
-	return GoogleUser{}
+func NewGoogleUser(username, password, email, status string) GoogleUserEntity {
+	return GoogleUserEntity{}
 }
 
-func NewGithubUser(username, password, email, status string) GithubUser {
-	return GithubUser{}
+func NewGithubUser(username, password, email, status string) GithubUserEntity {
+	return GithubUserEntity{}
 }
 
 // Usecase Interface
@@ -39,8 +39,8 @@ type (
 		GoogleLogin() error
 		GithubLogin() error
 
-		GoogleCallback(user GoogleUser) error
-		GithubCallback(user GithubUser) error
+		GoogleCallback(user GoogleUserEntity) error
+		GithubCallback(user GithubUserEntity) error
 
 		Register(id uint) error
 	}

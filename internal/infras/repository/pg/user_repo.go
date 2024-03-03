@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/motchai-sns/sn-mono/internal/domain"
-	"github.com/motchai-sns/sn-mono/repository/models"
+	"github.com/motchai-sns/sn-mono/internal/infras/repository/models"
 	"gorm.io/gorm"
 )
 
@@ -25,18 +25,18 @@ func (pg *PgUserRepo) Delete(ctx context.Context, id int64) error {
 }
 
 // Fetch implements domain.IUserRepository.
-func (pg *PgUserRepo) Fetch(ctx context.Context, cursor string, num int64) (res []domain.User, nextCursor string, err error) {
+func (pg *PgUserRepo) Fetch(ctx context.Context, cursor string, num int64) (res []domain.UserEntity, nextCursor string, err error) {
 	panic("unimplemented")
 }
 
 // GetByTitle implements domain.IUserRepository.
-func (pg *PgUserRepo) GetByTitle(ctx context.Context, title string) (domain.User, error) {
+func (pg *PgUserRepo) GetByTitle(ctx context.Context, title string) (domain.UserEntity, error) {
 	panic("unimplemented")
 }
 
 // Insert implements domain.IUserRepository.
-func (pg *PgUserRepo) Insert(user *domain.User) error {
-	newUser := model.NewUserModelFromEntity(user)
+func (pg *PgUserRepo) Insert(user *domain.UserEntity) error {
+	newUser := model.NewUserModel(user)
 	result := pg.conn.Create(newUser)
 
 	if result.Error != nil {
@@ -47,17 +47,17 @@ func (pg *PgUserRepo) Insert(user *domain.User) error {
 }
 
 // Store implements domain.IUserRepository.
-func (pg *PgUserRepo) Store(ctx context.Context, user *domain.User) error {
+func (pg *PgUserRepo) Store(ctx context.Context, user *domain.UserEntity) error {
 	panic("unimplemented")
 }
 
 // Update implements domain.IUserRepository.
-func (*PgUserRepo) Update(ctx context.Context, user *domain.User) error {
+func (*PgUserRepo) Update(ctx context.Context, user *domain.UserEntity) error {
 	panic("unimplemented")
 }
 
 // GetByID implements domain.UserRepository.
-func (pg *PgUserRepo) GetByID(ctx context.Context, id uint) (domain.User, error) {
+func (pg *PgUserRepo) GetByID(ctx context.Context, id uint) (domain.UserEntity, error) {
 	var usr model.User
 	result := pg.conn.First(&usr, id)
 

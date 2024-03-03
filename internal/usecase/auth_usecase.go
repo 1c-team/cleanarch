@@ -26,11 +26,11 @@ func (authUC *AuthUsecase) Register(id uint) error {
 }
 
 // GithubCallback implements domain.IAuthUsecase.
-func (authUC *AuthUsecase) GithubCallback(user domain.GithubUser) error {
+func (authUC *AuthUsecase) GithubCallback(user domain.GithubUserEntity) error {
 	panic("unimplemented")
 }
 
 // GoogleCallback implements domain.IAuthUsecase.
-func (authUC *AuthUsecase) GoogleCallback(user domain.GoogleUser) error {
+func (authUC *AuthUsecase) GoogleCallback(user domain.GoogleUserEntity) error {
 	panic("unimplemented")
 }

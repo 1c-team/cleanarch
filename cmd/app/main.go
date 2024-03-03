@@ -16,10 +16,10 @@ import (
 	"golang.org/x/crypto/acme"
 	"golang.org/x/crypto/acme/autocert"
 
-	"github.com/motchai-sns/sn-mono/connection"
+	"github.com/motchai-sns/sn-mono/internal/infras/connection"
 	"github.com/motchai-sns/sn-mono/internal/app/controller"
 	"github.com/motchai-sns/sn-mono/internal/usecase"
-	"github.com/motchai-sns/sn-mono/repository/models"
+	"github.com/motchai-sns/sn-mono/internal/infras/repository/models"
 )
 
 func main() {

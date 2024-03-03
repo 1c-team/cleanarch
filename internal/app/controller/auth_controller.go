@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/labstack/echo/v4"
-	"github.com/motchai-sns/sn-mono/configs"
+	"github.com/motchai-sns/sn-mono/internal/infras/configs"
 	"github.com/motchai-sns/sn-mono/internal/domain"
 )
 

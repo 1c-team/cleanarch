@@ -2,7 +2,7 @@ package domain
 
 import "context"
 
-type Token struct {
+type TokenEntity struct {
 	ID        int64  `json:"id"`
 	Type      string `json:"type"`
 	Name      string `json:"name"`
@@ -12,5 +12,5 @@ type Token struct {
 }
 
 type TokenRepository interface {
-	GetByID(ctx context.Context, id int64) (Token, error)
+	GetByID(ctx context.Context, id int64) (TokenEntity, error)
 }

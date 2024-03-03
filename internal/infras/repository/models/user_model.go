@@ -13,7 +13,7 @@ type User struct {
 	Status   string
 }
 
-func NewUserModelFromEntity(user *domain.User) *User {
+func NewUserModel(user *domain.UserEntity) *User {
 	return &User{
 		Username: user.Username,
 		Password: user.Password,
@@ -22,8 +22,8 @@ func NewUserModelFromEntity(user *domain.User) *User {
 	}
 }
 
-func (userModel *User) ToEntity() *domain.User {
-	return &domain.User{
+func (userModel *User) ToEntity() *domain.UserEntity {
+	return &domain.UserEntity{
 		ID:        userModel.ID,
 		Username:  userModel.Username,
 		Password:  userModel.Password,
