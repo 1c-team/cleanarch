@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -39,11 +40,14 @@ func (ac *AuthController) googleCallback(c echo.Context) error {
 	oauthConfig := configs.GoogleOauthConfig()
 
 	token, err := oauthConfig.Exchange(c.Request().Context(), code)
+	fmt.Printf(err.Error())
 	if err != nil {
 		return c.JSON(400, "Code-Token Exchange Failed")
 	}
+	fmt.Printf(err.Error())
 
 	resp, err := http.Get("https://www.googleapis.com/oauth2/v2/userinfo?access_token=" + token.AccessToken)
+	fmt.Printf(err.Error())
 	if err != nil {
 		return c.JSON(400, "User Data Fetch Failed")
 	}

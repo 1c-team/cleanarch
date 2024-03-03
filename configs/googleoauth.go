@@ -1,7 +1,6 @@
 package configs
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -17,11 +16,13 @@ func GoogleOauthConfig() oauth2.Config {
 	}
 
 	return oauth2.Config{
-		RedirectURL:  fmt.Sprintf("%s/google_callback", os.Getenv("HOST_NAME")),
+		RedirectURL:  os.Getenv("GOOGLE_OAUTH_CALLBACK"),
 		ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
 		ClientSecret: os.Getenv("GOOGLE_CLIENT_SECRET"),
-		Scopes: []string{"https://www.googleapis.com/auth/userinfo.email",
-			"https://www.googleapis.com/auth/userinfo.profile"},
+		Scopes: []string{
+			"https://www.googleapis.com/auth/userinfo.email",
+			"https://www.googleapis.com/auth/userinfo.profile",
+		},
 		Endpoint: google.Endpoint,
 	}
 }
