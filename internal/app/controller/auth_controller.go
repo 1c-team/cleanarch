@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/labstack/echo/v4"
-	"github.com/motchai-sns/sn-mono/internal/domain"
-	"github.com/motchai-sns/sn-mono/internal/infras/configs"
+	"github.com/1c-team/cleanarch/internal/domain"
+	"github.com/1c-team/cleanarch/internal/infras/configs"
 )
 
 type AuthController struct {

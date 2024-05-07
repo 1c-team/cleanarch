@@ -3,8 +3,8 @@ package pg
 import (
 	"context"
 
-	"github.com/motchai-sns/sn-mono/internal/domain"
-	"github.com/motchai-sns/sn-mono/internal/infras/repository/models"
+	"github.com/1c-team/cleanarch/internal/domain"
+	"github.com/1c-team/cleanarch/internal/infras/repository/models"
 	"gorm.io/gorm"
 )
 

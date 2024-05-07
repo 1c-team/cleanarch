@@ -1,4 +1,4 @@
-module github.com/motchai-sns/sn-mono
+module github.com/1c-team/cleanarch
 
 go 1.21.6
 

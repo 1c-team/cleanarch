@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/motchai-sns/sn-mono/internal/domain"
+	"github.com/1c-team/cleanarch/internal/domain"
 )
 
 type UserController struct {

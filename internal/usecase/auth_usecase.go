@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"github.com/motchai-sns/sn-mono/internal/domain"
+	"github.com/1c-team/cleanarch/internal/domain"
 )
 
 type AuthUsecase struct{}
