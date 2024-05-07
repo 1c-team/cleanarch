@@ -7,9 +7,9 @@
 package main
 
 import (
-	"github.com/motchai-sns/sn-mono/internal/app/controller"
-	"github.com/motchai-sns/sn-mono/internal/infras/repository/pg"
-	"github.com/motchai-sns/sn-mono/internal/usecase"
+	"github.com/1c-team/cleanarch/internal/app/controller"
+	"github.com/1c-team/cleanarch/internal/infras/repository/pg"
+	"github.com/1c-team/cleanarch/internal/usecase"
 	"gorm.io/gorm"
 )
 

@@ -7,9 +7,9 @@ import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
 
-	"github.com/motchai-sns/sn-mono/internal/app/controller"
-	"github.com/motchai-sns/sn-mono/internal/usecase"
-	"github.com/motchai-sns/sn-mono/internal/infras/repository/pg"
+	"github.com/1c-team/cleanarch/internal/app/controller"
+	"github.com/1c-team/cleanarch/internal/usecase"
+	"github.com/1c-team/cleanarch/internal/infras/repository/pg"
 )
 
 // db connection will be injected by hand
